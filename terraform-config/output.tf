@@ -1,17 +1,17 @@
-output "acr-admin-username" {
+output "acr_admin_username" {
   value = azurerm_container_registry.acr.admin_username
 }
 
-output "acr-admin-password" {
+output "acr_admin_password" {
   value = azurerm_container_registry.acr.admin_password
   sensitive = true
 }
 
-output "acr-login-server" {
+output "acr_login_server" {
   value = azurerm_container_registry.acr.login_server
 }
 
-output "aks-cluster-name" {
+output "aks_cluster_name" {
   value = azurerm_kubernetes_cluster.aks.name
 }
 
