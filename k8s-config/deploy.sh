@@ -28,9 +28,8 @@ else
     kubectl apply -f app-cip-service.yml
     kubectl apply -f secret.yml
     kubectl apply -f ingress-service.yml
-    kubectl wait --namespace default --for=condition=ready pod --selector=app=demoapp --timeout=120s
-
 fi
+kubectl wait --namespace default --for=condition=ready pod --selector=app=demoapp --timeout=120s
 kubectl get all 
 kubectl get ingress
 
