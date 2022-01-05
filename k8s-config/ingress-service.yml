@@ -3,7 +3,9 @@ kind: Ingress
 metadata:
   name: app-ingress
 spec:
-  ingressClassName: appsecret
+  tls:
+    - secretName: appsecret
+  ingressClassName: nginx
   rules:
   - host: demo.com
     http:
