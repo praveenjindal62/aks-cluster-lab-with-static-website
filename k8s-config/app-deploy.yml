@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: demoapp-deployment
   labels:
-    app: nginx
+    app: demoapp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: demoapp
   template:
     metadata:
       labels:
-        app: nginx
+        app: demoapp
     spec:
       containers:
-      - name: nginx
+      - name: demoapp
         image: pj62acrepam01.azurecr.io/static-website-image:latest
         ports:
         - containerPort: 80

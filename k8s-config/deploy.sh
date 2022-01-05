@@ -11,3 +11,6 @@ openssl x509 -req -days 365 -in demo.csr -signkey demo.key -out demo.crt
 kubectl create secret tls appsecret --cert demo.crt --key demo.key --dry-run=client -o yaml > secret.yml
 
 kubectl apply -f .
+kubectl wait --namespace default --for=condition=ready pod --selector=demoapp=nginx --timeout=120s
+kubectl get all 
+kubectl get ingress

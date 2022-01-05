@@ -4,6 +4,6 @@ metadata:
   name: appcipservice
 spec:
   selector:
-    app: nginx
+    app: demoapp
   ports:
     - port: 80 # Default port for image
