@@ -1,0 +1,42 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+spec:
+  ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: demdbcip
+      port:
+        number: 80
+  rules:
+  - host: demo1.demo.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: appcipservice
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  - host: demo2.demo.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: demo2cip
+            port:
+              number: 80
+        path: /*
+        pathType: Prefix
+  - host: demo3.demo.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: demo3cip
+            port:
+              number: 80
+        path: /
+        pathType: Prefix

@@ -23,4 +23,4 @@ aksnodesku = "Standard_D2_v3"
 
 #Log analytics workspace 
 log_analytics_workspace_name = "aksloganalyticsworkspace"
-log_analytics_workspace_name_retention_days = 7
+log_analytics_workspace_name_retention_days = 30
