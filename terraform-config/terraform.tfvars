@@ -20,3 +20,7 @@ subnet2_prefix = ["10.1.0.0/22"]
 aksname = "labakscluster"
 aksnodecount = 1
 aksnodesku = "Standard_D2_v3"
+
+#Log analytics workspace 
+log_analytics_workspace_name = "aksloganalyticsworkspace"
+log_analytics_workspace_name_retention_days = 7

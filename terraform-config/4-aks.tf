@@ -9,15 +9,13 @@ resource "azurerm_kubernetes_cluster" "aks" {
     network_plugin      = "azure"
   }
   default_node_pool {
-    name                = "default"
-    node_count          = var.aksnodecount
+    name                = "akssystem"
+    node_count          = 1
     vm_size             = var.aksnodesku
     vnet_subnet_id      = azurerm_subnet.subnet2.id
-    enable_auto_scaling = true
+    enable_auto_scaling = false
     type                = "VirtualMachineScaleSets"
-    min_count           = 1
-    max_count           = 3
-    os_disk_size_gb     = 30
+    os_disk_size_gb     = 10
     os_sku              = "Ubuntu"
     max_pods            = 30
   }
@@ -39,6 +37,36 @@ resource "azurerm_kubernetes_cluster" "aks" {
     ]
   }
 
+  addon_profile {
+    oms_agent {
+      enabled = true
+      log_analytics_workspace_id = azurerm_log_analytics_workspace.lawspace.id
+    }
+    kube_dashboard {
+      enabled = true
+    }
+  }
+
+}
+
+resource "azurerm_kubernetes_cluster_node_pool" "usernodepool" {
+  name                  = "userpool"
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
+  vm_size               = var.aksnodesku
+  node_count            = var.aksnodecount
+  vnet_subnet_id        = azurerm_subnet.subnet2.id
+  enable_auto_scaling   = true
+  min_count             = 1
+  max_count             = 3
+  os_disk_size_gb       = 30
+  os_sku                = "Ubuntu"
+  max_pods              = 30
+
+  lifecycle {
+    ignore_changes = [
+      node_count
+    ]
+  }
 }
 
 resource "azurerm_role_assignment" "kubweb_to_acr" {

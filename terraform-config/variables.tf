@@ -49,3 +49,12 @@ variable "aksnodesku" {
 variable "aksnodecount" {
   type = number
 }
+
+variable "log_analytics_workspace_name" {
+  type = string
+}
+
+variable "log_analytics_workspace_name_retention_days" {
+  type = number
+}
+
