@@ -15,7 +15,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vnet_subnet_id      = azurerm_subnet.subnet2.id
     enable_auto_scaling = false
     type                = "VirtualMachineScaleSets"
-    os_disk_size_gb     = 10
+    os_disk_size_gb     = 30
     os_sku              = "Ubuntu"
     max_pods            = 30
   }
