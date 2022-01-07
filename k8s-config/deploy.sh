@@ -22,6 +22,7 @@ then
     echo "Upgrading deployment"
     #This is to force update deployment as I am changing docker image labels
     kubectl patch deployment demoapp-deployment -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+    kubectl patch deployment demoappdb-deployment -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
 else
     echo "Creating K8s Objects"
     kubectl apply -f app-deploy.yml
