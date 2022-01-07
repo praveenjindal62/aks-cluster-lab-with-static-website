@@ -13,12 +13,14 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "example" {
   # Count all errors in container logs in 30 min time window
   query       = <<-QUERY
   ContainerLog
-  | join ( 
-    ContainerInventory
-    | where Image contains "static-website-image" 
-    ) on ContainerID
+  | join kind= leftouter ( 
+  ContainerInventory
+  | where Image == "static-website-image" or Image == "static-website-image-db"
+  | distinct ContainerID, ContainerHostname
+  ) on $left.ContainerID == $right.ContainerID
   | where LogEntry contains "error"
-  | distinct TimeGenerated, ContainerID, LogEntry, LogEntrySource
+  | project TimeGenerated, ContainerID, LogEntry, LogEntrySource, ContainerHostname
+  | order by TimeGenerated desc
   QUERY
   severity    = 1
   frequency   = 5
