@@ -9,15 +9,16 @@ resource "azurerm_kubernetes_cluster" "aks" {
     network_plugin      = "azure"
   }
   default_node_pool {
-    name                = "akssystem"
-    node_count          = 1
-    vm_size             = var.aksnodesku
-    vnet_subnet_id      = azurerm_subnet.subnet2.id
-    enable_auto_scaling = false
-    type                = "VirtualMachineScaleSets"
-    os_disk_size_gb     = 30
-    os_sku              = "Ubuntu"
-    max_pods            = 30
+    name                         = "akssystem"
+    node_count                   = 1
+    vm_size                      = var.aksnodesku
+    vnet_subnet_id               = azurerm_subnet.subnet2.id
+    enable_auto_scaling          = false
+    type                         = "VirtualMachineScaleSets"
+    os_disk_size_gb              = 30
+    os_sku                       = "Ubuntu"
+    max_pods                     = 30
+    only_critical_addons_enabled = true
   }
 
   identity {
