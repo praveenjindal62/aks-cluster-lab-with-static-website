@@ -6,6 +6,11 @@ spec:
   tls:
     - secretName: appsecret
   ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: demoappdbservice
+      port:
+        number: 80
   rules:
   - host: demo.com
     http:

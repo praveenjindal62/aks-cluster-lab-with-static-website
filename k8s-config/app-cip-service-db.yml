@@ -1,0 +1,9 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: demoappdbservice
+spec:
+  selector:
+    app: demoappdb
+  ports:
+    - port: 80 # Default port for image

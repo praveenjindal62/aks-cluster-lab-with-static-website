@@ -3,4 +3,3 @@
 *.crt
 *.csr
 *.key
-Dockerfile_*

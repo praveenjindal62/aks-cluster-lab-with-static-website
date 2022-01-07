@@ -26,10 +26,12 @@ else
     echo "Creating K8s Objects"
     kubectl apply -f app-deploy.yml
     kubectl apply -f app-cip-service.yml
+    kubectl apply -f app-deploy-default-backend.yml
+    kubectl apply -f app-cip-service-db.yml
     kubectl apply -f secret.yml
     kubectl apply -f ingress-service.yml
 fi
-kubectl wait --namespace default --for=condition=ready pod --selector=app=demoapp --timeout=120s
+kubectl wait --namespace default --for=condition=ready pod --selector=app=demoapp,app=demoappdb --timeout=120s
 kubectl get all 
 kubectl get ingress
 
