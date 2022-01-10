@@ -23,8 +23,8 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "example" {
   | order by TimeGenerated desc
   QUERY
   severity    = 1
-  frequency   = 5
-  time_window = 30
+  frequency   = 10
+  time_window = 10
   trigger {
     operator  = "GreaterThanOrEqual"
     threshold = 3
