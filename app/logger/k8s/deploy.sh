@@ -11,7 +11,9 @@ then
     #This is to force update deployment as I am changing docker image labels
     kubectl patch deployment $DEPLOYMENT_NAME -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
 else
-    echo "Creating K8s Objects"
+    echo "Creating K8s Objects with image $1"
+    sed -i "s/#LOGGERIMAGE#/$1/g" k8s.yml
+    cat k8s.yml
     kubectl apply -f k8s.yml
 fi
 kubectl get all

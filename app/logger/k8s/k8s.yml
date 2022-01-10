@@ -29,7 +29,7 @@ spec:
         app: logger-deploy
     spec:
       containers:
-      - image: loggertest:latest
+      - image: #LOGGERIMAGE#
         name: logger
         env:
           - name: LOG_DIR
