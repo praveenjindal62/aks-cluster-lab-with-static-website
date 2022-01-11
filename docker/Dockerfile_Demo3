@@ -1,5 +1,0 @@
-FROM nginx:latest
-WORKDIR /usr/share/nginx/html/
-COPY src /usr/share/nginx/html/
-RUN sed -i "s/Dimension/Demo 3/g" index.html
-EXPOSE 80

@@ -1,9 +1,0 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: appcipservice
-spec:
-  selector:
-    app: demoapp
-  ports:
-    - port: 80 # Default port for image
