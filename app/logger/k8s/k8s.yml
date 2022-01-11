@@ -31,6 +31,7 @@ spec:
       containers:
       - image: #LOGGERIMAGE#
         name: logger
+        args: ["1000","5000"]
         env:
           - name: LOG_DIR
             value: /logs
@@ -47,7 +48,7 @@ spec:
       - image: busybox:latest
         name: logger-sidecar
         command: ["/bin/sh"]
-        args: ["-c","tail -f /logs/*"]
+        args: ["-c","sleep 60;tail -fn+1 /logs/system.$HOSTNAME.log; exit 0;"]
         volumeMounts:
           - mountPath: "/logs"
             name: volume
